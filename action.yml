@@ -13,7 +13,7 @@ inputs:
 
 outputs:
   json:
-    description: "The output in as json."
+    description: "The output as json."
 
 runs:
   using: "node16"
