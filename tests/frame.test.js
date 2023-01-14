@@ -14,7 +14,6 @@ describe("frame", () => {
     expect(response['@graph']).toBeDefined()
   });
 
-
   // https://w3id.org/traceability#GS1KeyCredential
   it("works with documentLoader", async () => {
     const response = await adapter.operationSwitch({
