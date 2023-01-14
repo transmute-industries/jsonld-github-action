@@ -16,12 +16,12 @@ jobs:
       - name: Coverage
         run: npm run coverage
       - name: Build
-        run: npm build
+        run: npm run build
       - name: Do the work
         uses: ./ # Use a "private unpublished github action in the current repository"
         id: do_work
         with:
-          operation: 'frame',
+          operation: frame
           document: |
             {
               "http://schema.org/name": "Orie Steele",
