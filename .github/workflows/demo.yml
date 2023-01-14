@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Frame a Document
-        uses: transmute-industries/jsonld-github-action@v0.0.0
+        uses: transmute-industries/jsonld-github-action@v0.0.1
         id: frame
         with:
           operation: frame
