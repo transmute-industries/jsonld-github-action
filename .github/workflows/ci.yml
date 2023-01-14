@@ -1,0 +1,41 @@
+name: CI
+
+on: [push, workflow_dispatch]
+
+jobs:
+  do_work:
+    runs-on: ubuntu-latest
+    name: Do Work
+    outputs:
+      json: ${{ steps.do_work.outputs.json }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install
+        run: npm ci
+      - name: Coverage
+        run: npm run coverage
+      - name: Build
+        run: npm build
+      - name: Do the work
+        uses: ./ # Use a "private unpublished github action in the current repository"
+        id: do_work
+        with:
+          opertation: "hello world"
+      - name: Review the work
+        run: |-
+          echo '${{ steps.do_work.outputs.json }}' >> work.json
+      - name: Upload the work as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: recent-work
+          path: work.json
+      - name: Badges
+        uses: jpb06/jest-badges-action@latest
+        with:
+          branches: main
+          
+  
+
+    
+    

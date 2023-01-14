@@ -1,0 +1,16 @@
+name: "Transmute GitHub JSON-LD Action"
+description: |
+  This action enables JSON-LD operations within GitHub Workflows.
+inputs:
+  operation:
+    description: |
+      The JSON-LD Operation you wish to perform.
+    require: true
+
+outputs:
+  json:
+    description: "The output in as json."
+
+runs:
+  using: "node16"
+  main: "dist/index.js"
