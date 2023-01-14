@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js --license licenses.txt",
-    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test": "NODE_NO_WARNINGS=1 NODE_OPTIONS='--experimental-vm-modules' jest",
     "coverage": "NODE_OPTIONS='--experimental-vm-modules' jest --ci --coverage",
     "prerelease": "npm run build",
     "release": "npm version patch && git add ./package.json",

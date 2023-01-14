@@ -35605,10 +35605,30 @@ module.exports = { operationSwitch  }
 
 /***/ }),
 
-/***/ 9604:
-/***/ ((module) => {
+/***/ 9284:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
 
-const documentLoader = (iri)=>{
+const contexts = {
+  [`https://www.w3.org/2018/credentials/v1`]: __nccwpck_require__(7474),
+  [`https://ref.gs1.org/gs1/vc/licence-context/`]: __nccwpck_require__(6183),
+  [`https://w3id.org/vc/status-list/2021/v1`]: __nccwpck_require__(9985)
+};
+
+module.exports = contexts;
+
+/***/ }),
+
+/***/ 9604:
+/***/ ((module, __unused_webpack_exports, __nccwpck_require__) => {
+
+
+const contexts = __nccwpck_require__(9284);
+
+const documentLoader = async (iri) => {
+  if (contexts[iri]){
+    return { document: contexts[iri] };
+  }
+  console.log(`documentLoader("${iri}")`)
   throw new Error('Document Loader does not support IRI: ' + iri)
 }
 
@@ -35622,7 +35642,7 @@ module.exports = documentLoader;
 const jsonld = __nccwpck_require__(1171);
 
 const frame = async (document, documentLoader) =>{
-  const framed = await jsonld.frame(document, {
+  const framed = await jsonld.frame(document, {}, {
     documentLoader,
   });
   return framed;
@@ -36168,6 +36188,30 @@ exports.DEFAULT_HEADERS = DEFAULT_HEADERS;
 exports.httpClient = httpClient;
 exports.kyPromise = kyOriginalPromise;
 
+
+/***/ }),
+
+/***/ 6183:
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"@context":{"@version":1.1,"rdf":"http://www.w3.org/1999/02/22-rdf-syntax-ns#","rdfs":"http://www.w3.org/2000/01/rdf-schema#","owl":"http://www.w3.org/2002/07/owl#","skos":"http://www.w3.org/2004/02/skos/core#","gs1":"https://gs1.org/voc/","language":"@language","value":"@value","GS1PrefixLicenceCredential":{"@id":"gs1:GS1PrefixLicenceCredential"},"GS18PrefixLicenceCredential":{"@id":"gs1:GS18PrefixLicenceCredential"},"GS1CompanyPrefixLicenceCredential":{"@id":"gs1:GS1CompanyPrefixLicenceCredential"},"GS1IdentificationKeyLicenceCredential":{"@id":"gs1:GS1IdentificationKeyLicenceCredential"},"GS1DelegatedPrefixLicenceCredential":{"@id":"gs1:GS1DelegatedPrefixLicenceCredential"},"GS1DelegatedIdentificationKeyLicenceCredential":{"@id":"gs1:GS1DelegatedIdentificationKeyLicenceCredential"},"partyGLN":{"@id":"gs1:partyGLN"},"organizationName":{"@id":"gs1:organizationName"},"extendsCredential":{"@id":"gs1:extendsCredential","@type":"@id"},"licenceValue":{"@id":"gs1:licenceValue"},"alternativeLicenceValue":{"@id":"gs1:alternativeLicenceValue"},"identificationKeyType":{"@id":"gs1:identificationKeyType"},"isGS1CompanyPrefixLicenceAllowed":{"@id":"gs1:isGS1CompanyPrefixLicenceAllowed"},"isExactMatchRequired":{"@id":"gs1:isExactMatchRequired"},"isGS1IdentificationKeyLicenceAllowed":{"@id":"gs1:isGS1IdentificationKeyLicenceAllowed"}}}');
+
+/***/ }),
+
+/***/ 9985:
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"@context":{"@protected":true,"StatusList2021Credential":{"@id":"https://w3id.org/vc/status-list#StatusList2021Credential","@context":{"@protected":true,"id":"@id","type":"@type","description":"http://schema.org/description","name":"http://schema.org/name"}},"StatusList2021":{"@id":"https://w3id.org/vc/status-list#StatusList2021","@context":{"@protected":true,"id":"@id","type":"@type","statusPurpose":"https://w3id.org/vc/status-list#statusPurpose","encodedList":"https://w3id.org/vc/status-list#encodedList"}},"StatusList2021Entry":{"@id":"https://w3id.org/vc/status-list#StatusList2021Entry","@context":{"@protected":true,"id":"@id","type":"@type","statusPurpose":"https://w3id.org/vc/status-list#statusPurpose","statusListIndex":"https://w3id.org/vc/status-list#statusListIndex","statusListCredential":{"@id":"https://w3id.org/vc/status-list#statusListCredential","@type":"@id"}}}}}');
+
+/***/ }),
+
+/***/ 7474:
+/***/ ((module) => {
+
+"use strict";
+module.exports = JSON.parse('{"@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","VerifiableCredential":{"@id":"https://www.w3.org/2018/credentials#VerifiableCredential","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","cred":"https://www.w3.org/2018/credentials#","sec":"https://w3id.org/security#","xsd":"http://www.w3.org/2001/XMLSchema#","credentialSchema":{"@id":"cred:credentialSchema","@type":"@id","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","cred":"https://www.w3.org/2018/credentials#","JsonSchemaValidator2018":"cred:JsonSchemaValidator2018"}},"credentialStatus":{"@id":"cred:credentialStatus","@type":"@id"},"credentialSubject":{"@id":"cred:credentialSubject","@type":"@id"},"evidence":{"@id":"cred:evidence","@type":"@id"},"expirationDate":{"@id":"cred:expirationDate","@type":"xsd:dateTime"},"holder":{"@id":"cred:holder","@type":"@id"},"issued":{"@id":"cred:issued","@type":"xsd:dateTime"},"issuer":{"@id":"cred:issuer","@type":"@id"},"issuanceDate":{"@id":"cred:issuanceDate","@type":"xsd:dateTime"},"proof":{"@id":"sec:proof","@type":"@id","@container":"@graph"},"refreshService":{"@id":"cred:refreshService","@type":"@id","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","cred":"https://www.w3.org/2018/credentials#","ManualRefreshService2018":"cred:ManualRefreshService2018"}},"termsOfUse":{"@id":"cred:termsOfUse","@type":"@id"},"validFrom":{"@id":"cred:validFrom","@type":"xsd:dateTime"},"validUntil":{"@id":"cred:validUntil","@type":"xsd:dateTime"}}},"VerifiablePresentation":{"@id":"https://www.w3.org/2018/credentials#VerifiablePresentation","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","cred":"https://www.w3.org/2018/credentials#","sec":"https://w3id.org/security#","holder":{"@id":"cred:holder","@type":"@id"},"proof":{"@id":"sec:proof","@type":"@id","@container":"@graph"},"verifiableCredential":{"@id":"cred:verifiableCredential","@type":"@id","@container":"@graph"}}},"EcdsaSecp256k1Signature2019":{"@id":"https://w3id.org/security#EcdsaSecp256k1Signature2019","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","xsd":"http://www.w3.org/2001/XMLSchema#","challenge":"sec:challenge","created":{"@id":"http://purl.org/dc/terms/created","@type":"xsd:dateTime"},"domain":"sec:domain","expires":{"@id":"sec:expiration","@type":"xsd:dateTime"},"jws":"sec:jws","nonce":"sec:nonce","proofPurpose":{"@id":"sec:proofPurpose","@type":"@vocab","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","assertionMethod":{"@id":"sec:assertionMethod","@type":"@id","@container":"@set"},"authentication":{"@id":"sec:authenticationMethod","@type":"@id","@container":"@set"}}},"proofValue":"sec:proofValue","verificationMethod":{"@id":"sec:verificationMethod","@type":"@id"}}},"EcdsaSecp256r1Signature2019":{"@id":"https://w3id.org/security#EcdsaSecp256r1Signature2019","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","xsd":"http://www.w3.org/2001/XMLSchema#","challenge":"sec:challenge","created":{"@id":"http://purl.org/dc/terms/created","@type":"xsd:dateTime"},"domain":"sec:domain","expires":{"@id":"sec:expiration","@type":"xsd:dateTime"},"jws":"sec:jws","nonce":"sec:nonce","proofPurpose":{"@id":"sec:proofPurpose","@type":"@vocab","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","assertionMethod":{"@id":"sec:assertionMethod","@type":"@id","@container":"@set"},"authentication":{"@id":"sec:authenticationMethod","@type":"@id","@container":"@set"}}},"proofValue":"sec:proofValue","verificationMethod":{"@id":"sec:verificationMethod","@type":"@id"}}},"Ed25519Signature2018":{"@id":"https://w3id.org/security#Ed25519Signature2018","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","xsd":"http://www.w3.org/2001/XMLSchema#","challenge":"sec:challenge","created":{"@id":"http://purl.org/dc/terms/created","@type":"xsd:dateTime"},"domain":"sec:domain","expires":{"@id":"sec:expiration","@type":"xsd:dateTime"},"jws":"sec:jws","nonce":"sec:nonce","proofPurpose":{"@id":"sec:proofPurpose","@type":"@vocab","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","assertionMethod":{"@id":"sec:assertionMethod","@type":"@id","@container":"@set"},"authentication":{"@id":"sec:authenticationMethod","@type":"@id","@container":"@set"}}},"proofValue":"sec:proofValue","verificationMethod":{"@id":"sec:verificationMethod","@type":"@id"}}},"RsaSignature2018":{"@id":"https://w3id.org/security#RsaSignature2018","@context":{"@version":1.1,"@protected":true,"challenge":"sec:challenge","created":{"@id":"http://purl.org/dc/terms/created","@type":"xsd:dateTime"},"domain":"sec:domain","expires":{"@id":"sec:expiration","@type":"xsd:dateTime"},"jws":"sec:jws","nonce":"sec:nonce","proofPurpose":{"@id":"sec:proofPurpose","@type":"@vocab","@context":{"@version":1.1,"@protected":true,"id":"@id","type":"@type","sec":"https://w3id.org/security#","assertionMethod":{"@id":"sec:assertionMethod","@type":"@id","@container":"@set"},"authentication":{"@id":"sec:authenticationMethod","@type":"@id","@container":"@set"}}},"proofValue":"sec:proofValue","verificationMethod":{"@id":"sec:verificationMethod","@type":"@id"}}},"proof":{"@id":"https://w3id.org/security#proof","@type":"@id","@container":"@graph"}}}');
 
 /***/ })
 
