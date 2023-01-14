@@ -1,0 +1,29 @@
+name: Demo
+
+on: workflow_dispatch
+
+# on:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: "0 8 * * *" # every day at 8 am
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Frame a Document
+        uses: transmute-industries/jsonld-github-action@v0.0.0
+        id: frame
+        with:
+          operation: frame
+          document: |
+            {
+              "http://schema.org/name": "Orie Steele",
+              "http://schema.org/url": {"@id": "https://transmute.industries"}
+            }
+      - name: Review the framed document
+        run: |-
+          echo '${{ steps.frame.outputs.json }}' >> framed.json;
+          cat ./framed.json | jq
