@@ -1,6 +1,6 @@
-# JSON-LD Action
+# JSON-LD GitHub Action
 
-🚧 Experimental 🏗️.
+🚧 Experimental 🏗️. [![Demo](https://github.com/transmute-industries/jsonld-github-action/actions/workflows/demo.yml/badge.svg)](https://github.com/transmute-industries/jsonld-github-action/actions/workflows/demo.yml)
 
 [![CI](https://github.com/transmute-industries/jsonld-github-action/actions/workflows/ci.yml/badge.svg)](https://github.com/transmute-industries/jsonld-github-action/actions/workflows/ci.yml)
 ![Branches](./badges/coverage-branches.svg)
