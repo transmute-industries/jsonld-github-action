@@ -21,7 +21,12 @@ jobs:
         uses: ./ # Use a "private unpublished github action in the current repository"
         id: do_work
         with:
-          opertation: "hello world"
+          operation: 'frame',
+          document: |
+            {
+              "http://schema.org/name": "Orie Steele",
+              "http://schema.org/url": {"@id": "https://transmute.industries"}
+            }
       - name: Review the work
         run: |-
           echo '${{ steps.do_work.outputs.json }}' >> work.json

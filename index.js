@@ -5,6 +5,7 @@ const lib = require("./src");
 const getOpts = () => {
   return {
     operation: core.getInput("operation"),
+    document: core.getInput("document"),
     // limit: parseInt(core.getInput("limit")),
   };
 };
@@ -12,7 +13,7 @@ const getOpts = () => {
 async function run() {
   try {
     const opts = getOpts();
-    const response = await lib.adapter.doWork(opts);
+    const response = await lib.adapter.operationSwitch(opts);
     core.setOutput("json", JSON.stringify(response));
   } catch (error) {
     core.setFailed(error.message);

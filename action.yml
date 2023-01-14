@@ -4,7 +4,11 @@ description: |
 inputs:
   operation:
     description: |
-      The JSON-LD Operation you wish to perform.
+      A JSON-LD Operation.
+    require: true
+  document:
+    description: |
+      A JSON Document (string).
     require: true
 
 outputs:

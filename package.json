@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "build": "ncc build index.js --license licenses.txt",
-    "test": "jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "coverage": "jest --ci --coverage",
     "prerelease": "npm run build",
     "release": "npm version patch && git add ./package.json",
     "postrelease": "git push --tags",
@@ -24,7 +25,8 @@
   },
   "homepage": "https://github.com/transmute-industries/jsonld-github-action#readme",
   "dependencies": {
-    "@actions/core": "^1.10.0"
+    "@actions/core": "^1.10.0",
+    "jsonld": "^8.1.0"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.4",
