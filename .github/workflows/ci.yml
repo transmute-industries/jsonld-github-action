@@ -40,7 +40,7 @@ jobs:
       json: ${{ steps.frame.outputs.json }}
     steps:
       - name: Cache Restore
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         id: cache-restore
         with:
           path: |
